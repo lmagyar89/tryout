@@ -18,6 +18,7 @@
   
   <modules>
     <module>tryHibernate5</module>
+    <module>tryconcurrent</module>
   </modules>
 
   <dependencies>

@@ -12,9 +12,10 @@ public class ReentrantLockManager implements LockManager{
         System.out.println(Thread.currentThread().getName() + " try lock... " + new Timestamp(System.currentTimeMillis()));
 //        cache.computeIfAbsent(key, s -> new ReentrantLock()).lock();
         ReentrantLock lock = cache.computeIfAbsent(key, s -> new ReentrantLock());
+        System.out.println(Thread.currentThread().getName() + " try on lock: " + lock + " " + new Timestamp(System.currentTimeMillis()));
         demonstrateLockingIssue();
         lock.lock();
-        System.out.println(Thread.currentThread().getName() + " got lock... " + new Timestamp(System.currentTimeMillis()));
+        System.out.println(Thread.currentThread().getName() + " got lock... " + lock + " " + new Timestamp(System.currentTimeMillis()));
     }
 
     protected void demonstrateLockingIssue() {
@@ -30,7 +31,7 @@ public class ReentrantLockManager implements LockManager{
                     && !lock.hasQueuedThreads()
             ) {
                 cache.remove(key);
-                System.out.println(Thread.currentThread().getName() + " remove lock from cache: " + lock + new Timestamp(System.currentTimeMillis()));
+                System.out.println(Thread.currentThread().getName() + " remove lock from cache: " + lock + " " + new Timestamp(System.currentTimeMillis()));
             }
         }
     }

@@ -1,8 +1,5 @@
 package com.tryout.concurrent.usejdk.locking;
 
-import com.tryout.concurrent.usejdk.ThreadUtil;
-
-import java.lang.ref.WeakReference;
 import java.sql.Timestamp;
 import java.util.Collections;
 import java.util.Map;
@@ -17,8 +14,9 @@ public class WeakReentrantLockManager implements LockManager{
         System.out.println(Thread.currentThread().getName() + " try lock... " + new Timestamp(System.currentTimeMillis()));
 //        cache.computeIfAbsent(key, s -> new ReentrantLock()).lock();
         ReentrantLock lock = cache.computeIfAbsent(key, s -> new ReentrantLock());
+        System.out.println(Thread.currentThread().getName() + " try on lock: " + lock + " " + new Timestamp(System.currentTimeMillis()));
         lock.lock();
-        System.out.println(Thread.currentThread().getName() + " got lock... " + new Timestamp(System.currentTimeMillis()));
+        System.out.println(Thread.currentThread().getName() + " got lock... " + lock + " " + new Timestamp(System.currentTimeMillis()));
     }
 
     @Override
@@ -27,11 +25,8 @@ public class WeakReentrantLockManager implements LockManager{
         if(lock != null && lock.isHeldByCurrentThread()) {
             lock.unlock();
         }
-    }
-
-    public void printAfterGC(String key) {
-        System.gc();
-
-        System.out.println("After GC: " + cache.get(key));
+        if (lock == null) {
+            System.out.println(Thread.currentThread().getName() + " lock is null...");
+        }
     }
 }

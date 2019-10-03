@@ -1,9 +1,6 @@
 package com.tryout.concurrent.usejdk;
 
-import com.tryout.concurrent.usejdk.locking.DemoReentrantLockManager;
-import com.tryout.concurrent.usejdk.locking.LockManager;
-import com.tryout.concurrent.usejdk.locking.ReentrantLockManager;
-import com.tryout.concurrent.usejdk.locking.WeakReentrantLockManager;
+import com.tryout.concurrent.usejdk.locking.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,6 +17,7 @@ public class Main {
             try {
                 lockManager.lock(new String("key"));
                 System.out.println("Within 'a' thread.");
+                System.gc();
             } finally {
                 lockManager.unlock(new String("key"));
             }
@@ -29,6 +27,7 @@ public class Main {
             try {
                 lockManager.lock(new String("key"));
                 System.out.println("Within 'b' thread.");
+                System.gc();
             } finally {
                 lockManager.unlock(new String("key"));
             }
@@ -38,20 +37,15 @@ public class Main {
             try {
                 lockManager.lock(new String("key"));
                 System.out.println("Within 'c' thread.");
+                System.gc();
             } finally {
                 lockManager.unlock(new String("key"));
             }
         }, "c");
 
         a.start();
-        ThreadUtil.sleepThread(1000);
         b.start();
-        ThreadUtil.sleepThread(1000);
         c.start();
-
-        ThreadUtil.sleepThread(7000);
-
-        lockManager.printAfterGC(new String("key"));
     }
 
     private static void demoReentrantLockManager() {

@@ -19,6 +19,7 @@
   <modules>
     <module>tryHibernate5</module>
     <module>tryconcurrent</module>
+    <module>trysingleton</module>
   </modules>
 
   <dependencies>
@@ -74,26 +75,20 @@
         </plugin>
       </plugins>
     </pluginManagement>
-	
-	
-<!--		<plugins>-->
-<!--		<plugin>-->
-<!--				<groupId>org.apache.maven.plugins</groupId>-->
-<!--				<artifactId>maven-shade-plugin</artifactId>-->
-<!--				<version>2.3</version>-->
-<!--				<executions>-->
-<!--					&lt;!&ndash; Run shade goal on package phase &ndash;&gt;-->
-<!--					<execution>-->
-<!--						<phase>package</phase>-->
-<!--						<goals>-->
-<!--							<goal>shade</goal>-->
-<!--						</goals>-->
-<!--					</execution>-->
-<!--				</executions>-->
-<!--			</plugin>-->
-
-<!--		</plugins>-->
-	
-	
+<!--        <plugins>-->
+  <!--        <plugin>-->
+  <!--            <groupId>org.apache.maven.plugins</groupId>-->
+  <!--            <artifactId>maven-shade-plugin</artifactId>-->
+  <!--            <version>2.3</version>-->
+  <!--            <executions>-->
+  <!--                <execution>-->
+  <!--                    <phase>package</phase>-->
+  <!--                    <goals>-->
+  <!--                        <goal>shade</goal>-->
+  <!--                    </goals>-->
+  <!--                </execution>-->
+  <!--            </executions>-->
+  <!--        </plugin>-->
+<!--        </plugins>-->
   </build>
 </project>

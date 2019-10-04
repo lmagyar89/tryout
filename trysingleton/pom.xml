@@ -9,11 +9,11 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.tryout.concurrent</groupId>
-    <artifactId>concurrent-parent</artifactId>
+    <groupId>com.tryout.singleton</groupId>
+    <artifactId>singleton-parent</artifactId>
     <packaging>pom</packaging>
-    <name>concurrent-parent</name>
+    <name>singleton-parent</name>
     <modules>
-        <module>usejdk</module>
+        <module>scope</module>
     </modules>
 </project>

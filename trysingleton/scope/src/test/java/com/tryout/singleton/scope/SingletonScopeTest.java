@@ -1,12 +1,13 @@
 package com.tryout.singleton.scope;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+
+import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class SingletonScopeTest {
     @Test
@@ -14,7 +15,7 @@ public class SingletonScopeTest {
         Singleton firstInstance = Singleton.getInstance();
         Singleton scondInstance = Singleton.getInstance();
 
-        assertThat(firstInstance).isSameAs(scondInstance);
+        assertSame(firstInstance, scondInstance);
     }
 
     @Test
@@ -24,7 +25,7 @@ public class SingletonScopeTest {
         Class<?> singletonClass = getSingletonClass(classLoader);
         Method getInstanceMethod = getInstanceMethod(singletonClass);
 
-        assertThat(getInstanceMethod.invoke(null)).isSameAs(getInstanceMethod.invoke(null));
+        assertSame(getInstanceMethod.invoke(null), getInstanceMethod.invoke(null));
     }
 
     @Test
@@ -39,7 +40,7 @@ public class SingletonScopeTest {
         Class<?> secondSingletonClass = getSingletonClass(secondClassLoader);
         Method secondGetInstanceMethod = getInstanceMethod(secondSingletonClass);
 
-        assertThat(firstGetInstanceMethod.invoke(null)).isNotSameAs(secondGetInstanceMethod.invoke(null));
+        assertNotSame(firstGetInstanceMethod.invoke(null), secondGetInstanceMethod.invoke(null));
     }
 
     @Test
@@ -56,7 +57,7 @@ public class SingletonScopeTest {
         Class<?> secondSingletonClass = getSingletonClass(secondClassLoader);
         Method secondGetInstanceMethod = getInstanceMethod(secondSingletonClass);
 
-        assertThat(firstGetInstanceMethod.invoke(null)).isSameAs(secondGetInstanceMethod.invoke(null));
+        assertSame(firstGetInstanceMethod.invoke(null), secondGetInstanceMethod.invoke(null));
     }
 
     private static URL getBaseUrl() {

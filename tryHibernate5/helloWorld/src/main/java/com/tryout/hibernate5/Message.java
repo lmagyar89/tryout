@@ -9,6 +9,8 @@ public class Message {
     Long id;
     @Column(nullable = false)
     String text;
+    @Column
+    private int version;
 
     public Message(String text) {
         setText(text);
@@ -33,11 +35,20 @@ public class Message {
         this.text = text;
     }
 
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
-                "id=" + getId() +
-                ", text='" + getText() + '\'' +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", version=" + version +
                 '}';
     }
 }

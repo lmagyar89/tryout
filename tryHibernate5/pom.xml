@@ -17,7 +17,7 @@
   <name>hibernate5-parent</name>
   
   <properties>
-    <hibernate-core.version>5.4.22.Final</hibernate-core.version>
+    <hibernate-core.version>5.4.24.Final</hibernate-core.version>
     <h2.version>1.4.197</h2.version>
   </properties>
   
